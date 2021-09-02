@@ -6,19 +6,21 @@ import (
 )
 
 func TestBinaryTreeCount(t *testing.T) {
-	bt := new(BinaryTree)
-	bt.Root = &Node{Val: "F"}
-	bt.Root.Left = &Node{Val: "B"}
-	bt.Root.Right = &Node{Val: "G"}
-
-	bt.Root.Left.Left = &Node{Val: "A"}
-	bt.Root.Left.Right = &Node{Val: "D"}
-
-	bt.Root.Left.Right.Left = &Node{Val: "C"}
-	bt.Root.Left.Right.Right = &Node{Val: "E"}
-
-	bt.Root.Right.Right = &Node{Val: "I"}
-	bt.Root.Right.Right.Left = &Node{Val: "H"}
+	bt := newTestBinaryTree()
 
 	fmt.Println(bt.Count())
+}
+
+func TestBinaryTreeSerialize(t *testing.T) {
+	bt := newTestBinaryTree()
+
+	t.Log(bt.Serialize())
+}
+
+func TestBinaryTreeDeserialize(t *testing.T) {
+	bt := newTestBinaryTree()
+	s := bt.Serialize()
+
+	nbt := Deserialize(s)
+	t.Log(nbt.Serialize())
 }
